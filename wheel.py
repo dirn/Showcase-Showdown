@@ -10,27 +10,8 @@ def display(screen, state, width=3):
     for k, v in enumerate(state):
         screen.addstr(k, 3, str(v).center(width + 2))
 
-    #for k, v in enumerate(nwise(state)):
-    #    if k > 10:
-    #        break
-    #    if greatest in v or use_color:
-    #        if v[0] == greatest:
-    #            color = 1
-    #            use_color = True
-    #        else:
-    #            use_color = False
-    #            color = 2
-    #    else:
-    #        color = 0
-    #    screen.addstr(k, 3, str(v[0]).center(width + 2),
-    #                  curses.color_pair(color))
-
     screen.addstr(5, width + 5, '\u2190')
     screen.addstr(11, 0, '')
-
-
-nwise = lambda g, n=2: zip(*(islice(g, i, None)
-                             for i, g in enumerate(tee(g, n))))
 
 
 def pause(n):
