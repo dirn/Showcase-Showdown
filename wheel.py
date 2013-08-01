@@ -6,11 +6,14 @@ from random import randrange, shuffle
 from time import sleep
 
 
+ARROW = '\u2190'
+
+
 def display(screen, state, width=3):
     for k, v in enumerate(state):
         screen.addstr(k, 3, str(v).center(width + 2))
 
-    screen.addstr(5, width + 5, '\u2190')
+    screen.addstr(5, width + 5, ARROW)
     screen.addstr(11, 0, '')
 
 
@@ -66,8 +69,8 @@ if __name__ == '__main__':
     for color in colors:
         curses.init_pair(*color)
 
-    red = lambda: curses.color_pair(1)
-    green = lambda: curses.color_pair(2)
+    red = curses.color_pair(1)
+    green = curses.color_pair(2)
 
     wheel = wheel(15)
 
@@ -79,7 +82,7 @@ if __name__ == '__main__':
         text1(' ' * 17)
         text2(' ' * 17)
 
-        stdscr.addstr(5, 8, '\u2190', green())
+        stdscr.addstr(5, 8, ARROW, green)
 
         winner = partial(stdscr.addstr, 5, 11)
 
@@ -87,7 +90,7 @@ if __name__ == '__main__':
             if x % 2:
                 winner(' ' * 11)
             else:
-                winner('WINNER!!!!!', red() | curses.A_BOLD)
+                winner('WINNER!!!!!', red | curses.A_BOLD)
 
             stdscr.addstr(11, 0, '')
             stdscr.refresh()
